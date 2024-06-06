@@ -53,11 +53,10 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://chat-app-mern-6z87.onrender.com",
+    origin: "*",
     // credentials: true,
   },
 });
-console.log("io initial",io)
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
   socket.on("setup", (userData) => {
