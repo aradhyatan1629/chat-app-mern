@@ -6,12 +6,20 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const path = require("path");
+const cors = require("cors");
 
 dotenv.config();
 connectDB();
 const app = express();
 
 app.use(express.json()); // to accept json data
+
+
+// Add CORS middleware
+app.use(cors({
+  origin: "https://chat-app-mern-frontend-git-main-aradhya-tanejas-projects.vercel.app",
+  credentials: true
+}));
 
 // app.get("/", (req, res) => {
 //   res.send("API Running!");
@@ -54,7 +62,9 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
     origin: "https://chat-app-mern-frontend-git-main-aradhya-tanejas-projects.vercel.app",
-    // credentials: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
   },
 });
 io.on("connection", (socket) => {
