@@ -53,7 +53,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://chat-app-mern-6z87.onrender.com",
+    origin: "https://chat-app-mern-frontend-git-main-aradhya-tanejas-projects.vercel.app",
     // credentials: true,
   },
 });
